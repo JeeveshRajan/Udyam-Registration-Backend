@@ -1,0 +1,25 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "removeComments": true,
+    "sourceMap": false,
+    "declaration": false,
+    "declarationMap": false
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.test.ts",
+    "**/*.spec.ts",
+    "**/__tests__/**",
+    "**/tests/**",
+    "**/*.test.js",
+    "**/*.spec.js",
+    "**/jest.config.js",
+    "**/jest.setup.js"
+  ]
+}
