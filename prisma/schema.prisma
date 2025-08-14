@@ -1,0 +1,68 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model FormSubmission {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Step 1: Aadhaar + OTP Validation
+  aadhaarNumber String  @unique
+  mobileNumber  String
+  emailAddress  String
+  otpVerified   Boolean @default(false)
+  
+  // Step 2: PAN Validation
+  panNumber     String  @unique
+  businessName  String
+  businessType  String
+  addressLine1  String
+  addressLine2  String?
+  city          String
+  state         String
+  pincode       String
+  
+  // Additional fields
+  status        FormStatus @default(PENDING)
+  notes         String?
+  
+  // Validation metadata
+  validationErrors Json?
+  
+  // Relations
+  validationLogs ValidationLog[]
+  
+  @@map("form_submissions")
+}
+
+enum FormStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  UNDER_REVIEW
+}
+
+model ValidationLog {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  
+  fieldName String
+  fieldValue String
+  validationType String // "aadhaar", "pan", "mobile", "email", "pincode"
+  isValid   Boolean
+  errorMessage String?
+  
+  formSubmissionId String?
+  formSubmission   FormSubmission? @relation(fields: [formSubmissionId], references: [id])
+  
+  @@map("validation_logs")
+}
