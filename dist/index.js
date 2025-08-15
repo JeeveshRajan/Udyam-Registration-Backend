@@ -72,8 +72,6 @@ process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
 process.on('SIGINT', () => gracefulShutdown('SIGINT'));
 const startServer = async () => {
     try {
-        await prisma.$connect();
-        console.log('✅ Database connected successfully');
         app.listen(PORT, () => {
             console.log(`\n🚀 Udyam Registration API Server`);
             console.log(`📍 Environment: ${NODE_ENV}`);
@@ -82,6 +80,14 @@ const startServer = async () => {
             console.log(`📊 Environment: ${NODE_ENV}`);
             console.log(`⏰ Started at: ${new Date().toISOString()}\n`);
         });
+        try {
+            await prisma.$connect();
+            console.log('✅ Database connected successfully');
+        }
+        catch (dbError) {
+            console.warn('⚠️ Database connection failed, but server is running:', dbError.message);
+            console.log('ℹ️ Server will continue running without database connection');
+        }
     }
     catch (error) {
         console.error('❌ Failed to start server:', error);

@@ -4,6 +4,9 @@ FROM node:18-alpine AS builder
 # Set working directory
 WORKDIR /app
 
+# Install OpenSSL and other dependencies
+RUN apk add --no-cache openssl
+
 # Copy package files
 COPY package*.json ./
 
@@ -18,6 +21,9 @@ RUN npm run build
 
 # Production stage
 FROM node:18-alpine AS production
+
+# Install OpenSSL and other dependencies
+RUN apk add --no-cache openssl
 
 # Create app user
 RUN addgroup -g 1001 -S nodejs
