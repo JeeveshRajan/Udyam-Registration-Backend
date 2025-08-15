@@ -198,4 +198,3 @@ router.get('/popular', async (req, res) => {
     }
 });
 exports.default = router;
-//# sourceMappingURL=locationRoutes.js.map

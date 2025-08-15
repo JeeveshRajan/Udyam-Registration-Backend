@@ -288,4 +288,3 @@ function getValidationType(field) {
     return validationMap[field] || 'general';
 }
 exports.default = router;
-//# sourceMappingURL=formRoutes.js.map

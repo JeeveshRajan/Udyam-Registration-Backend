@@ -241,4 +241,3 @@ router.get('/history/:fieldName', async (req, res) => {
     }
 });
 exports.default = router;
-//# sourceMappingURL=validationRoutes.js.map

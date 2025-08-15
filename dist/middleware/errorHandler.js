@@ -19,4 +19,3 @@ const errorHandler = (err, req, res, next) => {
     res.status(statusCode).json(errorResponse);
 };
 exports.errorHandler = errorHandler;
-//# sourceMappingURL=errorHandler.js.map
