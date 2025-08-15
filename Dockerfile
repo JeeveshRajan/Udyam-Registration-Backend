@@ -42,7 +42,7 @@ RUN npm ci --only=production && npm cache clean --force
 COPY --from=builder --chown=nodejs:nodejs /app/dist ./dist
 COPY --from=builder --chown=nodejs:nodejs /app/prisma ./prisma
 
-# Generate Prisma client
+# Generate Prisma client (IMPORTANT: after all files are copied)
 RUN npx prisma generate
 
 # Switch to non-root user
