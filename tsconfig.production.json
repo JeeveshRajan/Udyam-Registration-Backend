@@ -5,7 +5,9 @@
     "removeComments": true,
     "sourceMap": false,
     "declaration": false,
-    "declarationMap": false
+    "declarationMap": false,
+    "lib": ["ES2020"],
+    "types": ["node"]
   },
   "include": [
     "src/**/*"

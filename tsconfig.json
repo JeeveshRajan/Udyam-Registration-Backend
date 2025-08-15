@@ -24,7 +24,8 @@
     "noPropertyAccessFromIndexSignature": false,
     "noUncheckedIndexedAccess": false,
     "allowUnusedLabels": true,
-    "allowUnreachableCode": true
+    "allowUnreachableCode": true,
+    "types": ["node"]
   },
   "include": [
     "src/**/*"
