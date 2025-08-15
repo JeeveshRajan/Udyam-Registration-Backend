@@ -6,9 +6,9 @@
     "sourceMap": false,
     "declaration": false,
     "declarationMap": false,
-    "lib": ["ES2020", "DOM"],
-    "types": ["node"],
-    "moduleResolution": "node"
+    "lib": ["ES2020"],
+    "skipLibCheck": true,
+    "noEmitOnError": false
   },
   "include": [
     "src/**/*"
